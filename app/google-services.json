@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "744565248000",
+    "project_id": "wakala-66778",
+    "storage_bucket": "wakala-66778.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744565248000:android:dcf3f22fe8d0c37b5908e5",
+        "android_client_info": {
+          "package_name": "com.kraken.wakala"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "744565248000-klbgebdtfe771t4gbufqg7caa6gpc6ij.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kraken.wakala",
+            "certificate_hash": "841984f0e18c8e7bf2a19b35bfe6ab771885e320"
+          }
+        },
+        {
+          "client_id": "744565248000-vk8c7mffjid13pv7o1eilnc3ak8kg1sm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCD3ymQt3c-S9Je33f0HfQsxyO0i0uVLpA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "744565248000-vk8c7mffjid13pv7o1eilnc3ak8kg1sm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

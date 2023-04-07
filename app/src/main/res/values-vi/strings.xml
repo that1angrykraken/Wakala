@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="text_gender_male">Nam</string>
+    <string name="app_name">Wakala</string>
+    <string name="text_sign_in_required">Đăng nhập để tiếp tục..</string>
+    <string name="text_loading">Đang tải.</string>
+    <string name="text_sign_in_failed">Đăng nhập thất bại. Vui lòng thử lại!</string>
+    <string name="text_sign_in_canceled">Quá trình đăng nhập bị hủy bỏ! Vui lòng thử lại để tiếp tục.</string>
+    <string name="text_network_error">Vui lòng kiểm tra kết nối mạng rồi thử lại.</string>
+    <string name="text_sign_in_successful">Chào mừng, %UserDisplayName% !</string>
+    <string name="button_text_sign_in_with_google">Đăng nhập bằng Google</string>
+    <string name="text_nav_exercises">Bài tập</string>
+    <string name="text_nav_news">Tin tức</string>
+    <string name="text_nav_leaderboard">BXH</string>
+    <string name="text_nav_me">Tôi</string>
+    <string name="text_toast_exit_message">Nhấn trở về một lần nữa để thoát.</string>
+    <string name="go_to_settings">Go to Settings</string>
+    <string name="text_des_review_personal_information">Xem lại thông tin cá nhân</string>
+    <string name="text_name_label">Tên</string>
+    <string name="text_email_hint">Email</string>
+    <string name="text_address_hint">Địa chỉ</string>
+    <string name="text_phone_hint">Số điện thoại</string>
+    <string name="text_tip_active_hours">Số giờ hoạt động</string>
+    <string name="text_tip_finished_distance">Quãng đường đã hoàn thành</string>
+    <string name="text_button_save_changes">Lưu thay đổi</string>
+    <string name="text_msg_me_data_failed">Lấy thông tin thất bại</string>
+    <string name="text_gender_female">Nữ</string>
+    <string name="text_gender_unknown">Khác</string>
+    <string name="text_hint_gender">Giới tính</string>
+    <string name="text_hint_dob">Ngày sinh</string>
+    <string name="text_msg_applied_changes">Thay đổi đã được áp dụng</string>
+    <string name="text_helper_date_type">Ngày/tháng/năm</string>
+    <string name="text_dp_select_date">Chọn ngày</string>
+    <string name="text_nav_history">Lịch sử</string>
+    <string name="text_msg_operation_failure">Thao tác thất bại</string>
+    <string name="text_msg_read_data_failure">Lấy dữ liệu thất bại</string>
+    <string name="text_msg_update_data_failure">Cập nhật dữ liệu thất bại</string>
+    <string name="text_msg_delete_data_failure">Xóa dữ liệu thất bại</string>
+</resources>

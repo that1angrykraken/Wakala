@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Wakala</string>
+    <string name="text_sign_in_required">Sign in to continue..</string>
+    <string name="text_loading">Loading..</string>
+    <string name="text_sign_in_failed">Sign in failed. Please try again!</string>
+    <string name="text_sign_in_canceled">Progress canceled! Please try again to continue.</string>
+    <string name="text_network_error">Please check your network then try again.</string>
+    <string name="text_sign_in_successful">Welcome, %UserDisplayName% !</string>
+    <string name="button_text_sign_in_with_google">Sign in with Google</string>
+    <string name="text_nav_exercises">Exercises</string>
+    <string name="text_nav_news">News</string>
+    <string name="text_nav_leaderboard">Leaderboard</string>
+    <string name="text_nav_me">Me</string>
+    <string name="text_toast_exit_message">Press Back once more to exit.</string>
+    <string name="go_to_settings">Go to Settings</string>
+    <string name="text_des_review_personal_information">Review personal information</string>
+    <string name="text_name_label">Name</string>
+    <string name="text_address_hint">Address</string>
+    <string name="text_phone_hint">Phone</string>
+    <string name="text_email_hint">Email</string>
+    <string name="text_tip_active_hours">Number of active hours</string>
+    <string name="text_tip_finished_distance">Finished distance</string>
+    <string name="text_button_save_changes">Save changes</string>
+    <string name="text_msg_me_data_failed">Failed to get your information</string>
+    <string name="text_gender_female">Female</string>
+    <string name="text_gender_unknown">Other</string>
+    <string name="text_gender_male">Male</string>
+    <string name="text_hint_gender">Gender</string>
+    <string name="text_hint_dob">Date of birth</string>
+    <string name="text_msg_applied_changes">Changes applied!</string>
+    <string name="text_helper_date_type">DD/MM/YYYY</string>
+    <string name="text_dp_select_date">Select date</string>
+    <string name="text_nav_history">History</string>
+    <string name="text_msg_operation_failure">Operation failed!</string>
+    <string name="text_msg_read_data_failure">Failed to get data!</string>
+    <string name="text_msg_update_data_failure">Failed to update data!</string>
+    <string name="text_msg_delete_data_failure">Failed to delete data!</string>
+    <string name="text_item_leave_group">Leave group</string>
+    <string name="text_hint_full_name">Full name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+</resources>
