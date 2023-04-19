@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="20dp"
             android:layout_marginTop="16dp"
-            android:hint="@string/text_hint_full_name">
+            android:hint="@string/hint_full_name">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="20dp"
             android:layout_marginTop="16dp"
-            android:hint="@string/text_hint_full_name">
+            android:hint="@string/hint_full_name">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

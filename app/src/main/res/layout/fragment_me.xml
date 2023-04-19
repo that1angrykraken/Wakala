@@ -6,7 +6,7 @@
 
     <data>
         <variable
-            name="meInfo"
+            name="currentUser"
             type="com.kraken.wakala.models.User" />
     </data>
 
@@ -29,7 +29,6 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
             android:backgroundTint="@android:color/transparent"
             android:contentDescription="@string/go_to_settings"
             android:padding="10dp"
@@ -39,17 +38,17 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="?collapsingToolbarLayoutMediumSize"
             android:fillViewport="true"
-            android:layout_below="@id/button_icon_settings">
+            android:layout_alignParentTop="true">
             <LinearLayout
                 android:id="@+id/linear_layout_me_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/round_top_background"
                 android:orientation="vertical"
-                android:paddingTop="80dp"
+                android:paddingTop="76dp"
                 android:paddingBottom="100dp"
-                android:background="@color/design_default_color_on_primary"
                 android:paddingHorizontal="20dp">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -64,7 +63,7 @@
                         android:paddingStart="0dp"
                         android:paddingEnd="10dp"
                         android:layout_weight="5"
-                        android:hint="@string/text_hint_gender"
+                        android:hint="@string/hint_gender"
                         style="@style/dropdown_rounded_box_corner">
                         <com.google.android.material.textfield.MaterialAutoCompleteTextView
                             android:layout_width="match_parent"
@@ -77,7 +76,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="@string/text_hint_dob"
+                        android:hint="@string/hint_dob"
                         app:endIconMode="custom"
                         app:endIconDrawable="@drawable/icons8_calendar_24px"
                         style="@style/dropdown_rounded_box_corner">
@@ -86,7 +85,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="none"
                             android:clickable="true"
-                            android:text="@{meInfo.dob}" />
+                            android:text="@{currentUser.dob}" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
                 <com.google.android.material.textfield.TextInputLayout
@@ -95,14 +94,14 @@
                     android:layout_height="wrap_content"
                     android:maxWidth="488dp"
                     android:layout_marginBottom="18dp"
-                    android:hint="@string/text_email_hint"
+                    android:hint="@string/email_hint"
                     style="@style/text_field_rounded_box_corner"
                     app:startIconDrawable="@drawable/icons8_email_sign_24px">
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="false"
-                        android:text="@{meInfo.email}"
+                        android:text="@{currentUser.email}"
                         android:inputType="none"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
@@ -110,7 +109,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxWidth="488dp"
-                    android:hint="@string/text_phone_hint"
+                    android:hint="@string/phone_hint"
                     style="@style/text_field_rounded_box_corner"
                     app:counterEnabled="true"
                     app:counterMaxLength="10"
@@ -118,7 +117,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={meInfo.phone}"
+                        android:text="@={currentUser.phone}"
                         android:inputType="phone"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
@@ -127,27 +126,28 @@
                     android:layout_height="wrap_content"
                     android:maxWidth="488dp"
                     android:layout_marginBottom="20dp"
-                    android:hint="@string/text_address_hint"
+                    android:hint="@string/address_hint"
                     style="@style/text_field_rounded_box_corner"
                     app:startIconDrawable="@drawable/icons8_address_24px">
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={meInfo.address}"
+                        android:text="@={currentUser.address}"
                         android:inputType="textPostalAddress"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="end">
+
                     <Button
                         android:id="@+id/button_save_changes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingVertical="16dp"
-                        android:textSize="16sp"
                         android:enabled="false"
-                        android:text="@string/text_button_save_changes"/>
+                        android:paddingVertical="16dp"
+                        android:text="@string/button_save_changes"
+                        android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
@@ -166,7 +166,7 @@
                 android:layout_marginStart="20dp"
                 android:padding="1dp"
                 app:strokeWidth="2dp"
-                app:shapeAppearanceOverlay="@style/circlet_image_view"/>
+                app:shapeAppearance="@style/circlet_image_view"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -183,15 +183,15 @@
                         android:layout_height="match_parent"
                         android:paddingHorizontal="0dp"
                         android:src="@drawable/icons8_time_24px"
-                        android:contentDescription="@string/text_des_review_personal_information"
+                        android:contentDescription="@string/des_review_personal_information"
                         android:backgroundTint="@android:color/transparent"
-                        android:tooltipText="@string/text_tip_active_hours"
+                        android:tooltipText="@string/tip_active_hours"
                         app:tint="@color/design_default_color_on_primary" />
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/text_me_active_hours"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{meInfo.activeHour+`h`}"
+                        android:text="@{currentUser.activeHour+`h`}"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:textColor="@color/design_default_color_on_primary"/>
@@ -201,15 +201,15 @@
                         android:paddingHorizontal="0dp"
                         android:layout_marginStart="15dp"
                         android:src="@drawable/icons8_trainers_24px"
-                        android:contentDescription="@string/text_des_review_personal_information"
+                        android:contentDescription="@string/des_review_personal_information"
                         android:backgroundTint="@android:color/transparent"
-                        android:tooltipText="@string/text_tip_finished_distance"
+                        android:tooltipText="@string/tip_finished_distance"
                         app:tint="@color/design_default_color_on_primary"/>
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/text_me_distance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{meInfo.distance+`km`}"
+                        android:text="@{currentUser.distance+`km`}"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:textColor="@color/design_default_color_on_primary"/>
@@ -222,7 +222,7 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="0dp"
                     android:gravity="center_vertical"
-                    android:text="@{meInfo.name}"
+                    android:text="@{currentUser.name}"
                     android:textSize="18sp"
                     android:textStyle="bold"/>
             </LinearLayout>
@@ -232,6 +232,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:indeterminate="true"/>
+            android:indeterminate="true"
+            android:visibility="invisible"/>
     </RelativeLayout>
 </layout>

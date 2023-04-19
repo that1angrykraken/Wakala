@@ -36,41 +36,27 @@ public class UserDataRepo {
         listener = (IDataChangeListener) object;
     }
 
-    public MutableLiveData<ArrayList<User>> getUserData(){
-        MutableLiveData<ArrayList<User>> data = new MutableLiveData<>();
-        db.collection("Users").get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    ArrayList<User> users = new ArrayList<>();
-                    for(QueryDocumentSnapshot document : queryDocumentSnapshots){
-                        User user = document.toObject(User.class);
-                        user.setId(document.getId());
-                        users.add(user);
-                    }
-                    data.setValue(users);
-                    listener.getListData(true);
+    public MutableLiveData<User> getCurrentUser(String userEmail){
+        MutableLiveData<User> userData = new MutableLiveData<>();
+        db.collection("Users").document(userEmail).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    User data = documentSnapshot.toObject(User.class);
+                    userData.setValue(data);
+                    listener.getData(null);
                 })
-                .addOnFailureListener(e -> {
-                    listener.getListData(false);
-                    Log.e(TAG, "getUserData: ", e);
-                });
-        return data;
-    }
-
-    public void deleteUser(User currentUser, User userToRemove){
-        db.collection("Users").document(currentUser.getId()+"/friends/"+userToRemove.getId()).delete()
-                .addOnSuccessListener(unused -> listener.deleteData(userToRemove))
-                .addOnFailureListener(e -> listener.deleteData(null));
+                .addOnFailureListener(listener::getData);
+        return userData;
     }
 
     public void updateUser(User user){
-        db.collection("Users").document(user.getId()).set(user)
-                .addOnSuccessListener(unused -> listener.deleteData(user))
-                .addOnFailureListener(e -> listener.deleteData(null));
+        db.collection("Users").document(user.getEmail()).set(user)
+                .addOnSuccessListener(unused -> listener.updateData(null))
+                .addOnFailureListener(listener::updateData);
     }
 
     public void addUser(User user){
-        db.collection("Users").add(user)
-                .addOnSuccessListener(unused -> listener.deleteData(user))
-                .addOnFailureListener(e -> listener.deleteData(null));
+        db.collection("Users").document(user.getEmail()).set(user)
+                .addOnSuccessListener(unused -> listener.addData(null))
+                .addOnFailureListener(listener::addData);
     }
 }

@@ -4,22 +4,22 @@
 
     <item
         android:id="@+id/homeFragment"
-        android:title="@string/text_nav_exercises"
+        android:title="@string/nav_home"
         android:icon="@drawable/icons8_exercise_96px"
         android:iconTintMode="multiply"/>
     <item
         android:id="@+id/historyFragment"
-        android:title="@string/text_nav_history"
+        android:title="@string/nav_history"
         android:icon="@drawable/round_history_24"
         android:iconTintMode="multiply"/>
     <item
         android:id="@+id/groupFragment"
-        android:title="@string/text_nav_leaderboard"
+        android:title="@string/nav_leaderboard"
         android:icon="@drawable/icons8_leaderboard_96px"
         android:iconTintMode="multiply"/>
     <item
         android:id="@+id/meFragment"
-        android:title="@string/text_nav_me"
+        android:title="@string/nav_me"
         android:icon="@drawable/icons8_user_96px"
         android:iconTintMode="multiply"/>
 </menu>

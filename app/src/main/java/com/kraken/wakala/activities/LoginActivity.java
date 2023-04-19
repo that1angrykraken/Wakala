@@ -4,7 +4,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.IntentSenderRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.ActivityNotFoundException;
@@ -13,17 +12,13 @@ import android.content.IntentSender;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.identity.Identity;
 import com.google.android.gms.auth.api.identity.SignInClient;
 import com.google.android.gms.auth.api.identity.SignInCredential;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.CommonStatusCodes;
-import com.google.android.material.progressindicator.LinearProgressIndicator;
-import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -32,6 +27,7 @@ import com.kraken.wakala.databinding.ActivityLoginBinding;
 import com.kraken.wakala.interfaces.IDataChangedCallBack;
 import com.kraken.wakala.models.User;
 import com.kraken.wakala.viewmodels.UserViewModel;
+import com.kraken.wakala.viewmodels.AppViewModelStore;
 
 public class LoginActivity extends AppCompatActivity implements IDataChangedCallBack {
 
@@ -46,18 +42,14 @@ public class LoginActivity extends AppCompatActivity implements IDataChangedCall
 
     private void UpdateUI(int result){
         if(result == 1){
-            binding.textSignInState.setText(getString(R.string.text_sign_in_successful)
+            binding.textSignInState.setText(getString(R.string.sign_in_successful)
                     .replace("%UserDisplayName%", mAuth.getCurrentUser().getDisplayName()));
             binding.buttonSignIn.setVisibility(View.GONE);
-            userViewModel.loadData();
+            userViewModel.loadData(mAuth.getCurrentUser().getEmail());
             return;
         }
-        binding.textSignInState.setText(getString(R.string.text_sign_in_failed));
+        binding.textSignInState.setText(getString(R.string.sign_in_failed));
         binding.buttonSignIn.setVisibility(View.VISIBLE);
-    }
-
-    private void LoadData(){
-
     }
 
     @Override
@@ -77,8 +69,8 @@ public class LoginActivity extends AppCompatActivity implements IDataChangedCall
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-        userViewModel.setCallBack(this);
+        userViewModel = new ViewModelProvider(AppViewModelStore::getInstance).get(UserViewModel.class);
+        userViewModel.init(this);
 
         binding.buttonSignIn.setOnClickListener(v->googleSignIn());
         InitializeLoginComponents();
@@ -100,7 +92,7 @@ public class LoginActivity extends AppCompatActivity implements IDataChangedCall
                                         Log.d(TAG, "signInWithCredential:success");
                                     } else {
                                         UpdateUI(0);
-                                        binding.textSignInState.setText(getString(R.string.text_sign_in_failed));
+                                        binding.textSignInState.setText(getString(R.string.sign_in_failed));
                                         Log.w(TAG, "signInWithCredential:failure", task.getException());
                                     }
                                 });
@@ -108,17 +100,17 @@ public class LoginActivity extends AppCompatActivity implements IDataChangedCall
                 } catch (ApiException e) {
                     switch (e.getStatusCode()) {
                         case CommonStatusCodes.CANCELED:
-                            binding.textSignInState.setText(getString(R.string.text_sign_in_canceled));
+                            binding.textSignInState.setText(getString(R.string.sign_in_canceled));
                             UpdateUI(0);
                             Log.d(TAG, "One-tap dialog was closed.");
                             break;
                         case CommonStatusCodes.NETWORK_ERROR:
-                            binding.textSignInState.setText(getString(R.string.text_network_error));
+                            binding.textSignInState.setText(getString(R.string.network_error));
                             UpdateUI(0);
                             Log.d(TAG, "One-tap encountered a network error.");
                             break;
                         default:
-                            binding.textSignInState.setText(getString(R.string.text_sign_in_failed));
+                            binding.textSignInState.setText(getString(R.string.sign_in_failed));
                             UpdateUI(0);
                             Log.d(TAG, e.getLocalizedMessage());
                             break;
@@ -145,13 +137,13 @@ public class LoginActivity extends AppCompatActivity implements IDataChangedCall
                         IntentSenderRequest request = new IntentSenderRequest.Builder(sender).build();
                         mGetContent.launch(request);
                     } catch (ActivityNotFoundException e) {
-                        binding.textSignInState.setText(getString(R.string.text_sign_in_failed));
+                        binding.textSignInState.setText(getString(R.string.sign_in_failed));
                         UpdateUI(0);
                         Log.e(TAG, "Couldn't start One Tap UI: " + e.getLocalizedMessage());
                     }
                 })
                 .addOnFailureListener(this, e -> {
-                    binding.textSignInState.setText(getString(R.string.text_sign_in_failed));
+                    binding.textSignInState.setText(getString(R.string.sign_in_failed));
                     UpdateUI(0);
                     Log.d(TAG, e.getLocalizedMessage());
                 });
@@ -159,18 +151,23 @@ public class LoginActivity extends AppCompatActivity implements IDataChangedCall
 
     @Override
     public void onSuccess(Object object) {
-        if(object instanceof Boolean){
-            if(userViewModel.getUser(mAuth.getCurrentUser().getEmail()) == null){
+        if(object instanceof String){
+            if(((String) object).equalsIgnoreCase("c")){
+                userViewModel.loadData(mAuth.getCurrentUser().getEmail());
+                return;
+            }
+            if(userViewModel.getUser().getValue() == null && ((String) object).equalsIgnoreCase("r")){
                 User user = new User();
                 user.setEmail(mAuth.getCurrentUser().getEmail());
                 user.setName(mAuth.getCurrentUser().getDisplayName());
+                user.setProfilePhoto(mAuth.getCurrentUser().getPhotoUrl().toString());
                 user.setDob("01/01/2023");
                 userViewModel.addAUser(user);
                 return;
             }
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
         }
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
     }
 
     @Override

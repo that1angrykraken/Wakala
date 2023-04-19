@@ -14,7 +14,7 @@
 <!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
 <!--    </style>-->
     <!-- M3 Theme -->
-    <style name="M3Theme.Wakala" parent="Theme.Material3.Light.NoActionBar">
+    <style name="Theme.Wakala" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/md_theme_light_primary</item>
         <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
@@ -58,15 +58,40 @@
         <item name="iconSize">32dp</item>
         <item name="iconTintMode">multiply</item>
     </style>
+
+    <style name="text_bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="circlet_image_view">
         <item name="cornerSize">50%</item>
     </style>
+
+    <style name="round_bottom_bg">
+        <item name="cornerSizeBottomLeft">15dp</item>
+        <item name="cornerSizeBottomRight">15dp</item>
+    </style>
+
+    <style name="round_top_bg">
+        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeTopRight">10dp</item>
+        <item name="background">?attr/colorOnPrimary</item>
+    </style>
+
     <style name="text_field_rounded_box_corner" parent="">
         <item name="boxCornerRadiusTopStart">30dp</item>
         <item name="boxCornerRadiusTopEnd">30dp</item>
         <item name="boxCornerRadiusBottomStart">30dp</item>
         <item name="boxCornerRadiusBottomEnd">30dp</item>
     </style>
+
+    <style name="filled_text_field_rounded_box_corner" parent="Widget.Material3.TextInputLayout.FilledBox">
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+<!--        <item name="boxCornerRadiusBottomStart">30dp</item>-->
+<!--        <item name="boxCornerRadiusBottomEnd">30dp</item>-->
+    </style>
+
     <style name="dropdown_rounded_box_corner" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="boxCornerRadiusTopStart">30dp</item>
         <item name="boxCornerRadiusTopEnd">30dp</item>

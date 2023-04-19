@@ -5,22 +5,41 @@ import androidx.databinding.Bindable;
 import androidx.databinding.library.baseAdapters.BR;
 
 public class User extends BaseObservable {
-    String id;
     String email, name, dob, address, phone;
     int gender;
     double activeHour;
     double distance;
+    String groupId;
+    boolean isLeader;
+    String profilePhoto;
 
     public User() {
     }
 
-    public User(String email, String name, String address, String phone, int activeHour, int distance) {
-        this.email = email;
-        this.name = name;
-        this.address = address;
-        this.phone = phone;
-        this.activeHour = activeHour;
-        this.distance = distance;
+    public String getProfilePhoto() {
+        return profilePhoto;
+    }
+
+    public void setProfilePhoto(String profilePhoto) {
+        this.profilePhoto = profilePhoto;
+    }
+
+    @Bindable
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
+    }
+
+    @Bindable
+    public boolean isLeader() {
+        return isLeader;
+    }
+
+    public void setLeader(boolean leader) {
+        isLeader = leader;
     }
 
     @Bindable
@@ -41,14 +60,6 @@ public class User extends BaseObservable {
     public void setGender(int gender) {
         this.gender = gender;
         notifyPropertyChanged(BR.gender);
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     @Bindable

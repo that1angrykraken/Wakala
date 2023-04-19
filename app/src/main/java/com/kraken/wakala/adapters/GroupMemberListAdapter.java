@@ -12,18 +12,31 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.kraken.wakala.R;
 import com.kraken.wakala.databinding.ViewItemGroupMemberBinding;
 import com.kraken.wakala.interfaces.ListItemListener;
+import com.kraken.wakala.models.GroupMember;
 import com.kraken.wakala.models.User;
+import com.squareup.picasso.Picasso;
+
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
 public class GroupMemberListAdapter extends RecyclerView.Adapter<GroupMemberListAdapter.ViewHolder> {
 
-    ArrayList<User> data;
+    ArrayList<GroupMember> data;
     final ListItemListener itemListener;
 
-    public GroupMemberListAdapter(Fragment fragmentImpl, ArrayList<User> data) {
+    public GroupMemberListAdapter(Fragment fragmentImpl, ArrayList<GroupMember> data) {
         this.itemListener = (ListItemListener) fragmentImpl;
         this.data = data;
+    }
+
+    public ArrayList<GroupMember> getData() {
+        return data;
+    }
+
+    public void setData(ArrayList<GroupMember> data) {
+        this.data = data;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -36,8 +49,12 @@ public class GroupMemberListAdapter extends RecyclerView.Adapter<GroupMemberList
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.binding.setMember(data.get(position));
-        holder.binding.textRanked.setText(String.valueOf(position));
+        GroupMember member = data.get(position);
+        holder.binding.setMember(member);
+        holder.binding.setPosition(position);
+        Picasso.get().load(member.getProfilePhoto()).into(holder.binding.imgMemberProfilePhoto);
+//        if(position < 3) holder.binding.textRanked.setTextAppearance(R.style.text_bold);
+//        holder.binding.textRanked.setText(String.valueOf(position+1));
         holder.binding.getRoot().setOnClickListener(view -> {
             itemListener.onItemClickListener(view, data.get(position), position);
         });

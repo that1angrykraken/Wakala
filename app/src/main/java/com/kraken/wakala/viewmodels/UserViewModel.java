@@ -3,6 +3,7 @@ package com.kraken.wakala.viewmodels;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.kraken.wakala.interfaces.IDataChangedCallBack;
 import com.kraken.wakala.models.User;
@@ -14,39 +15,28 @@ import java.util.List;
 
 public class UserViewModel extends ViewModel implements IDataChangeListener {
     UserDataRepo repo;
-    MutableLiveData<ArrayList<User>> data;
+    MutableLiveData<User> data;
     IDataChangedCallBack callBack;
 
     public UserViewModel() {
     }
 
-    public void loadData(){
+    public void init(IDataChangedCallBack callBack){
         repo = new UserDataRepo(this);
         data = new MutableLiveData<>();
-        repo.getUserData().observeForever(users -> data.setValue(users));
+        this.callBack = callBack;
+    }
+
+    public void loadData(String userEmail){
+        repo.getCurrentUser(userEmail).observeForever(user -> data.setValue(user));
     }
 
     public void setCallBack(IDataChangedCallBack callBack) {
         this.callBack = callBack;
     }
 
-    public MutableLiveData<ArrayList<User>> getData() {
+    public MutableLiveData<User> getUser() {
         return data;
-    }
-
-    public void deleteUser(User u1, User u2){
-        repo.deleteUser(u1,u2);
-    }
-
-    public User getUser(String userEmail){
-        User result = null;
-        for(User user : data.getValue()){
-            if(userEmail.equalsIgnoreCase(user.getEmail())){
-                result = user;
-                break;
-            }
-        }
-        return result;
     }
 
     public void addAUser(User user){
@@ -59,30 +49,32 @@ public class UserViewModel extends ViewModel implements IDataChangeListener {
 
     @Override
     public void getListData(Boolean success) {
-        if(success) callBack.onSuccess(true);
-        else callBack.onFailure("r");
+
     }
 
     @Override
     public void getData(Object object) {
-
+        if(object == null) callBack.onSuccess("r");
+        else callBack.onFailure("r");
     }
 
     @Override
     public void deleteData(Object object) {
-        if(object != null) callBack.onSuccess(object);
-        else callBack.onFailure("d");
+//        if(object == null) callBack.onSuccess("d");
+//        else callBack.onFailure("d");
     }
 
     @Override
     public void updateData(Object object) {
-        if(object != null) callBack.onSuccess(object);
+        if(object == null) callBack.onSuccess("u");
         else callBack.onFailure("u");
     }
 
     @Override
     public void addData(Object object) {
-        if(object != null) callBack.onSuccess(object);
-        else callBack.onFailure("c");
+        if(object == null)
+            callBack.onSuccess("c");
+        else
+            callBack.onFailure("c");
     }
 }

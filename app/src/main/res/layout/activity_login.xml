@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="@string/text_sign_in_required"
+            android:text="@string/sign_in_required"
             android:textSize="18sp"
             android:textColor="@color/design_default_color_secondary"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -57,5 +57,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_sign_in_state" />
 
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/button_sign_in"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:indeterminate="true"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

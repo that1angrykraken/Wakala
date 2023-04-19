@@ -26,8 +26,6 @@ public class HomeActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-
-
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container_1);
         NavController navController = navHostFragment.getNavController();
         getSupportFragmentManager().beginTransaction().addToBackStack(null).commit();
@@ -35,7 +33,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void handleOnBackPressed() {
                 backPressedCount++;
-                if(backPressedCount == 1) Toast.makeText(getBaseContext(), getString(R.string.text_toast_exit_message), Toast.LENGTH_SHORT).show();
+                if(backPressedCount == 1) Toast.makeText(getBaseContext(), getString(R.string.toast_exit_message), Toast.LENGTH_SHORT).show();
                 if(backPressedCount == 2) finish();
             }
         });
