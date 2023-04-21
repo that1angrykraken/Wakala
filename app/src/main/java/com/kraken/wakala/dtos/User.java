@@ -1,8 +1,10 @@
-package com.kraken.wakala.models;
+package com.kraken.wakala.dtos;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.library.baseAdapters.BR;
+
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 public class User extends BaseObservable {
     String email, name, dob, address, phone;
@@ -14,6 +16,17 @@ public class User extends BaseObservable {
     String profilePhoto;
 
     public User() {
+        email = "";
+        name = "";
+        dob = "01/01/2023";
+        address = "";
+        phone = "";
+        gender = 0;
+        activeHour = 0;
+        distance = 0;
+        groupId = "";
+        isLeader = false;
+        profilePhoto = "";
     }
 
     public String getProfilePhoto() {

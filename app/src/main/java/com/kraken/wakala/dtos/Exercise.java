@@ -1,4 +1,4 @@
-package com.kraken.wakala.models;
+package com.kraken.wakala.dtos;
 
 public class Exercise {
     String name, description, suitableFor, unit;

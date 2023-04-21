@@ -42,5 +42,8 @@
     <string name="join_a_group_button">Join a group</string>
     <string name="create_a_new_group_button">Create one</string>
     <string name="have_not_joined_a_group">You haven\'t participated in a group.</string>
+    <string name="button_join_group">Join group</string>
+    <string name="hint_group_id">Group ID</string>
+    <string name="des_dismiss_button">Dismiss button</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

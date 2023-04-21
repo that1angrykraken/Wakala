@@ -12,14 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
 import com.kraken.wakala.adapters.GroupMemberListAdapter;
 import com.kraken.wakala.databinding.FragmentGroupBinding;
+import com.kraken.wakala.dialogs.JoinGroupDialog;
 import com.kraken.wakala.interfaces.IDataChangedCallBack;
 import com.kraken.wakala.interfaces.ListItemListener;
-import com.kraken.wakala.models.Group;
-import com.kraken.wakala.models.GroupMember;
-import com.kraken.wakala.models.User;
+import com.kraken.wakala.dtos.Group;
+import com.kraken.wakala.dtos.GroupMember;
+import com.kraken.wakala.dtos.User;
 import com.kraken.wakala.viewmodels.GroupViewModel;
 import com.kraken.wakala.viewmodels.UserViewModel;
 import com.kraken.wakala.viewmodels.AppViewModelStore;
@@ -53,9 +53,27 @@ public class GroupFragment extends Fragment implements IDataChangedCallBack, Lis
         groupViewModel.init(this);
         if(!currentUserData.getGroupId().isEmpty()) {
             groupViewModel.loadGroupData(currentUserData.getGroupId());
+        }else {
+            groupData = new Group();
+            groupData.setId("");
+            binding.setGroup(groupData);
         }
 
         binding.buttonCreateGroup.setOnClickListener(view -> createGroup());
+        binding.buttonJoinGroup.setOnClickListener(view -> showJoinGroupDialog());
+    }
+
+    private void showJoinGroupDialog() {
+        JoinGroupDialog dialog = new JoinGroupDialog(requireContext());
+        dialog.setOnDismissListener(dialogInterface -> {
+            if(groupViewModel.getGroup().getValue() != null){
+                groupData = groupViewModel.getGroup().getValue();
+                binding.setGroup(groupData);
+                groupViewModel.setCallBack(this);
+                groupViewModel.loadGroupMemberData(groupData.getId());
+            }
+        });
+        dialog.show();
     }
 
     private void createGroup() {

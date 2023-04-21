@@ -1,17 +1,12 @@
 package com.kraken.wakala.viewmodels;
 
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.kraken.wakala.interfaces.IDataChangedCallBack;
-import com.kraken.wakala.models.User;
+import com.kraken.wakala.dtos.User;
 import com.kraken.wakala.interfaces.IDataChangeListener;
 import com.kraken.wakala.repositories.UserDataRepo;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserViewModel extends ViewModel implements IDataChangeListener {
     UserDataRepo repo;

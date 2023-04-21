@@ -23,7 +23,7 @@ import com.kraken.wakala.R;
 import com.kraken.wakala.activities.LoginActivity;
 import com.kraken.wakala.databinding.FragmentMeBinding;
 import com.kraken.wakala.interfaces.IDataChangedCallBack;
-import com.kraken.wakala.models.User;
+import com.kraken.wakala.dtos.User;
 import com.kraken.wakala.viewmodels.UserViewModel;
 import com.kraken.wakala.viewmodels.AppViewModelStore;
 import com.squareup.picasso.Picasso;

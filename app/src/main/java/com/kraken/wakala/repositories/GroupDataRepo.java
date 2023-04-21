@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.kraken.wakala.interfaces.IDataChangeListener;
-import com.kraken.wakala.models.Group;
-import com.kraken.wakala.models.GroupMember;
+import com.kraken.wakala.dtos.Group;
+import com.kraken.wakala.dtos.GroupMember;
 
 import java.util.ArrayList;
 
@@ -23,9 +23,11 @@ public class GroupDataRepo {
         db.document("/Groups/"+groupId).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     Group group = documentSnapshot.toObject(Group.class);
-                    group.setId(documentSnapshot.getId());
-                    data.setValue(group);
-                    listener.getData(null);
+                    if(group != null){
+                        group.setId(documentSnapshot.getId());
+                        data.setValue(group);
+                        listener.getData(null);
+                    }
                 })
                 .addOnFailureListener(listener::getData);
         return data;
@@ -38,11 +40,12 @@ public class GroupDataRepo {
                     ArrayList<GroupMember> members = new ArrayList<>();
                     for(DocumentSnapshot documentSnapshot : queryDocumentSnapshots){
                         GroupMember member = documentSnapshot.toObject(GroupMember.class);
+                        if(member == null) continue;
                         if(member.getGroupId().equalsIgnoreCase(groupId)){
                             members.add(member);
                         }
-                        data.setValue(members);
                     }
+                    data.setValue(members);
                     listener.getData(null);
                 })
                 .addOnFailureListener(listener::getData);

@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.kraken.wakala.interfaces.IDataChangeListener;
 import com.kraken.wakala.interfaces.IDataChangedCallBack;
-import com.kraken.wakala.models.Group;
-import com.kraken.wakala.models.GroupMember;
+import com.kraken.wakala.dtos.Group;
+import com.kraken.wakala.dtos.GroupMember;
 import com.kraken.wakala.repositories.GroupDataRepo;
 
 import java.util.ArrayList;

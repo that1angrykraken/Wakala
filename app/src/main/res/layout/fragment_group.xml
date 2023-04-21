@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="group"
-            type="com.kraken.wakala.models.Group" />
+            type="com.kraken.wakala.dtos.Group" />
     </data>
 
     <RelativeLayout
@@ -27,7 +27,7 @@
             android:gravity="center"
             android:orientation="vertical"
             android:layout_centerVertical="true"
-            android:visibility="@{group==null ? View.GONE : group.id.empty ? View.VISIBLE : View.GONE}">
+            android:visibility="@{group.id.empty ? View.VISIBLE : View.GONE}">
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
@@ -65,7 +65,7 @@
             android:id="@+id/coordinator_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="@{group==null ? View.GONE : View.VISIBLE}">
+            android:visibility="@{group.id.empty ? View.GONE : View.VISIBLE}">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"

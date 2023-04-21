@@ -6,17 +6,13 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.selection.SelectionTracker;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kraken.wakala.R;
 import com.kraken.wakala.databinding.ViewItemGroupMemberBinding;
 import com.kraken.wakala.interfaces.ListItemListener;
-import com.kraken.wakala.models.GroupMember;
-import com.kraken.wakala.models.User;
+import com.kraken.wakala.dtos.GroupMember;
 import com.squareup.picasso.Picasso;
-
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
@@ -53,8 +49,6 @@ public class GroupMemberListAdapter extends RecyclerView.Adapter<GroupMemberList
         holder.binding.setMember(member);
         holder.binding.setPosition(position);
         Picasso.get().load(member.getProfilePhoto()).into(holder.binding.imgMemberProfilePhoto);
-//        if(position < 3) holder.binding.textRanked.setTextAppearance(R.style.text_bold);
-//        holder.binding.textRanked.setText(String.valueOf(position+1));
         holder.binding.getRoot().setOnClickListener(view -> {
             itemListener.onItemClickListener(view, data.get(position), position);
         });

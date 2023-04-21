@@ -13,7 +13,7 @@
             type="Integer" />
         <variable
             name="member"
-            type="com.kraken.wakala.models.GroupMember" />
+            type="com.kraken.wakala.dtos.GroupMember" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -41,35 +41,35 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Leader"
-                    android:textStyle="bold"
-                    android:textColor="?colorOnPrimary"
-                    android:background="@drawable/bg_round_leader_tag"
+                    android:text="@{position+1+``}"
+                    android:typeface="@{position==0 ? Typeface.DEFAULT_BOLD : Typeface.NORMAL}"
+                    android:textColor="@{position==0 ? Color.rgb(255, 255, 255) : Color.BLACK}"
+                    android:textSize="@{position==0 ? 54.0f : 44.0f}"
+                    android:background="@drawable/bg_round_position_tag"
                     android:paddingHorizontal="6dp"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:visibility="@{member.leader ? View.VISIBLE : View.INVISIBLE}"
                     tools:ignore="HardcodedText" />
             </RelativeLayout>
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_ranked"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:id="@+id/text_captain_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="@{position==0 ? 56.0f : position==1 ? 48.0f : 40.0f}"
-                android:textColor="@{position==0? Color.RED : position==1? Color.BLUE : Color.BLACK}"
-                android:typeface="@{position&lt;3 ? Typeface.DEFAULT_BOLD : Typeface.DEFAULT}"
-                android:text="@{(position+1)+``}"
-                android:src="@drawable/round_arrow_right_48"
+                android:text="Captain"
+                android:textStyle="bold"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:visibility="@{!member.leader ? View.GONE : View.VISIBLE}"
+                tools:ignore="HardcodedText" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="5dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="0dp"
                 android:orientation="vertical"
-                android:layout_toEndOf="@id/profile_photo_layout">
+                android:layout_toEndOf="@id/profile_photo_layout"
+                android:layout_toStartOf="@id/text_captain_tag">
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_member_name"
                     android:layout_width="wrap_content"

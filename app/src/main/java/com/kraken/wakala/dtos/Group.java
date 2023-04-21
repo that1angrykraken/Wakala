@@ -1,4 +1,4 @@
-package com.kraken.wakala.models;
+package com.kraken.wakala.dtos;
 
 public class Group {
     String id;
